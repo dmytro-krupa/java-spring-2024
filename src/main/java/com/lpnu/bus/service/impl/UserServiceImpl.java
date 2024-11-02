@@ -1,57 +1,62 @@
 package com.lpnu.bus.service.impl;
 
 import com.lpnu.bus.dto.UserDTO;
+import com.lpnu.bus.entity.User;
+import com.lpnu.bus.repository.UserRepository;
 import com.lpnu.bus.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResourceAccessException;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private List<UserDTO> dtoList = new ArrayList<>();
-    private static long ID = 1;
+    private final UserRepository userRepository;
 
     @Override
     public UserDTO getUserById(long id) {
-        return dtoList.stream()
-                .filter(e -> e.getId() == id)
-                .findAny()
-                .orElseThrow(() -> new ResourceAccessException("User not found"));
+        User user = userRepository.getUserById(id);
+        return UserDTO.fromUser(user);
     }
 
     @Override
     public List<UserDTO> getUsers() {
-        return dtoList;
+        return userRepository.getUsers().stream()
+                .map(UserDTO::fromUser)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public UserDTO createUser(UserDTO userDTO) {
-        userDTO.setId(ID);
-        dtoList.add(userDTO);
+    public UserDTO createUser(final UserDTO userDTO) {
+        final User user = new User();
 
-        ++ID;
+        user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setEmail(user.getEmail());
 
-        return userDTO;
+        userRepository.save(user);
+
+        return UserDTO.fromUser(user);
     }
 
     @Override
     public UserDTO updateUser(UserDTO userDTO) {
-        UserDTO user = dtoList.stream()
-                .filter(e -> e.getId() == userDTO.getId())
-                .findAny()
-                .orElseThrow(() -> new ResourceAccessException("User not found"));
+        User user = userRepository.getUserById(userDTO.getId());
 
         user.setName(userDTO.getName());
         user.setSurname(userDTO.getSurname());
+        user.setEmail(user.getEmail());
 
-        return user;
+        userRepository.save(user);
+
+        return UserDTO.fromUser(user);
     }
 
     @Override
     public void deleteById(long id) {
-        dtoList.removeIf(e -> e.getId() == id);
+        userRepository.deleteById(id);
     }
 }

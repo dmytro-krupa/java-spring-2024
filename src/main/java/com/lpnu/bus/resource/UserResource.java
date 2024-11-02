@@ -1,9 +1,9 @@
 package com.lpnu.bus.resource;
 
 import com.lpnu.bus.dto.UserDTO;
+import com.lpnu.bus.repository.UserRepository;
 import com.lpnu.bus.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +14,6 @@ import java.util.List;
 public class UserResource {
 
     private final UserService userService;
-
 
     @GetMapping("/{id}")
     public UserDTO getUserById(@PathVariable long id) {
