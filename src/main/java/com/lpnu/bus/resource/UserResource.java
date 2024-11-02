@@ -1,7 +1,6 @@
 package com.lpnu.bus.resource;
 
 import com.lpnu.bus.dto.UserDTO;
-import com.lpnu.bus.repository.UserRepository;
 import com.lpnu.bus.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +15,7 @@ public class UserResource {
     private final UserService userService;
 
     @GetMapping("/{id}")
-    public UserDTO getUserById(@PathVariable long id) {
+    public UserDTO getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
@@ -36,7 +35,7 @@ public class UserResource {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable long id) {
+    public void deleteById(@PathVariable Long id) {
         userService.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
-package com.lpnu.bus.entity;
+package com.lpnu.bus.dto;
 
+import com.lpnu.bus.entity.Seat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,10 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-    private Long id;
+public class CreateSeatDTO {
     private String name;
-    private String surname;
-    private String email;
-    private String encodedPassword;
+    private int bookingPrice;
+    private Long busId;
 }

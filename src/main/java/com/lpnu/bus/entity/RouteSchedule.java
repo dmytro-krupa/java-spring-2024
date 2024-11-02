@@ -4,13 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class RouteSchedule {
     private Long id;
-    private String name;
-    private String surname;
-    private String email;
-    private String encodedPassword;
+    private Bus bus;
+    private Route route;
+
+    private LocalDate departureTime;
+    private LocalDate arrivalTime;
 }

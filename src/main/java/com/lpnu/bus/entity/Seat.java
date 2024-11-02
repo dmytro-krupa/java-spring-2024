@@ -1,4 +1,4 @@
-package com.lpnu.bus.dto;
+package com.lpnu.bus.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,8 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SimpleUserDTO {
-    private long id;
+public class Seat {
+    private Long id;
     private String name;
-    private String surname;
+    private int bookingPrice;
+    private Bus bus;
 }

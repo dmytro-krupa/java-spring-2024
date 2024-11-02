@@ -6,6 +6,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application {
 
+    /*
+        User
+        Ticket
+        Bus
+        Route
+        BusStation
+     */
+
+
+
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

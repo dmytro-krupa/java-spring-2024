@@ -18,9 +18,9 @@ public class UserDTO {
         final UserDTO userDTO = new UserDTO();
 
         userDTO.setId(user.getId());
-        userDTO.setName(userDTO.getName());
-        userDTO.setSurname(userDTO.getSurname());
-        userDTO.setEmail(userDTO.getEmail());
+        userDTO.setName(user.getName());
+        userDTO.setSurname(user.getSurname());
+        userDTO.setEmail(user.getEmail());
 
         return userDTO;
     }

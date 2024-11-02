@@ -9,42 +9,42 @@ import java.util.List;
 
 @Repository
 public class UserRepository {
-    private List<User> dtoList = new ArrayList<>();
-    private static long ID = 1;
+    private List<User> entityList = new ArrayList<>();
+    private static Long ID = 1L;
 
     public User getUserById(long id) {
-        return dtoList.stream()
+        return entityList.stream()
                 .filter(e -> e.getId() == id)
                 .findAny()
                 .orElseThrow(() -> new ResourceAccessException("User not found"));
     }
 
     public List<User> getUsers() {
-        return dtoList;
+        return entityList;
     }
 
     public User save(User user) {
         user.setId(ID);
-        dtoList.add(user);
+        entityList.add(user);
 
         ++ID;
 
         return user;
     }
 
-    public User updateUser(User userDTO) {
-        User user = dtoList.stream()
-                .filter(e -> e.getId() == userDTO.getId())
+    public User updateUser(User updatedUser) {
+        User user = entityList.stream()
+                .filter(e -> e.getId() == updatedUser.getId())
                 .findAny()
                 .orElseThrow(() -> new ResourceAccessException("User not found"));
 
-        user.setName(userDTO.getName());
-        user.setSurname(userDTO.getSurname());
+        user.setName(updatedUser.getName());
+        user.setSurname(updatedUser.getSurname());
 
         return user;
     }
 
     public void deleteById(long id) {
-        dtoList.removeIf(e -> e.getId() == id);
+        entityList.removeIf(e -> e.getId() == id);
     }
 }

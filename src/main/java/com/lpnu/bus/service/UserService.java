@@ -5,7 +5,7 @@ import com.lpnu.bus.dto.UserDTO;
 import java.util.List;
 
 public interface UserService {
-    UserDTO getUserById(long id);
+    UserDTO getUserById(Long id);
 
     List<UserDTO> getUsers();
 
@@ -13,5 +13,5 @@ public interface UserService {
 
     UserDTO updateUser(UserDTO userDTO);
 
-    void deleteById(long id);
+    void deleteById(Long id);
 }
